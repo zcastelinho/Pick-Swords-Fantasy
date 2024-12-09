@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://brbaurvkxuqt5"]
+
+[ext_resource type="Script" path="res://Menu.gd" id="1_waa47"]
+[ext_resource type="FontFile" uid="uid://brgyjv68o5ug3" path="res://Starborn.otf" id="2_cjd7q"]
+[ext_resource type="FontFile" uid="uid://cmuqm54fh6bbj" path="res://CHERI___.TTF" id="3_pnxt5"]
+[ext_resource type="FontFile" uid="uid://8misupv2fybk" path="res://Starborn.ttf" id="4_5bsek"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_waa47")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.245255, 0.378117, 0.717138, 1)
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -257.0
+offset_top = 204.0
+offset_right = 255.0
+offset_bottom = 244.0
+grow_horizontal = 2
+rotation = 0.00400579
+theme_override_colors/font_color = Color(0.168286, 5.77569e-07, 0.822411, 1)
+theme_override_colors/font_shadow_color = Color(7.21961e-07, 0.473208, 0.534264, 1)
+theme_override_colors/font_outline_color = Color(0.215382, 0.535259, 0.91873, 1)
+theme_override_fonts/font = ExtResource("2_cjd7q")
+theme_override_font_sizes/font_size = 35
+text = "Pick Swords Fantasy"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="TitleLabel"]
+layout_mode = 0
+offset_left = 203.203
+offset_top = 50.1864
+offset_right = 312.203
+offset_bottom = 73.1864
+scale = Vector2(1.01191, 1.0013)
+theme_override_colors/font_color = Color(0.38464, 0.476072, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.264206, 0.272497, 1)
+theme_override_fonts/font = ExtResource("3_pnxt5")
+text = "gamer player "
+
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -111.0
+offset_top = -38.0
+offset_right = 111.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.168627, 0, 0.823529, 1)
+theme_override_fonts/font = ExtResource("4_5bsek")
+theme_override_font_sizes/font_size = 60
+text = "start"
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
