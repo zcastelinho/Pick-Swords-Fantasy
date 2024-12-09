@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7gkmkg7l455s"]
+
+[ext_resource type="Script" path="res://skelleton.gd" id="1_w2ypi"]
+[ext_resource type="Texture2D" uid="uid://ce27yguxmaeh" path="res://pixilart-sprite.png" id="2_jb0dx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmv8t"]
+atlas = ExtResource("2_jb0dx")
+region = Rect2(0, 0, 110, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_05oir"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fmv8t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0epyp"]
+radius = 31.0
+height = 62.0
+
+[node name="skelleton" type="Area2D"]
+script = ExtResource("1_w2ypi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(17, -21)
+scale = Vector2(4.16364, 3.28)
+sprite_frames = SubResource("SpriteFrames_05oir")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, -1)
+shape = SubResource("CapsuleShape2D_0epyp")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

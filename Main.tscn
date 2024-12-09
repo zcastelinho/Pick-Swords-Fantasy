@@ -1,0 +1,382 @@
+[gd_scene load_steps=32 format=3 uid="uid://ce5gsk57vt00s"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_kybbk"]
+[ext_resource type="PackedScene" uid="uid://woia2loyyxwe" path="res://Coin.tscn" id="2_8qwvk"]
+[ext_resource type="PackedScene" uid="uid://ltcudyjxydpw" path="res://ConfettiParticles.tscn" id="3_n1orf"]
+[ext_resource type="FontFile" uid="uid://brgyjv68o5ug3" path="res://Starborn.otf" id="4_4d4pm"]
+[ext_resource type="PackedScene" uid="uid://cyb7sswn5jx4g" path="res://vampirino.tscn" id="4_g5f3d"]
+[ext_resource type="Texture2D" uid="uid://di1m1wq8hamg" path="res://Player/textures-2d-pixel-heart-1_800x-removebg-preview.png" id="5_2xq2c"]
+[ext_resource type="Script" path="res://Player.gd" id="6_tv2gb"]
+[ext_resource type="Texture2D" uid="uid://didk6lgcrki36" path="res://Player/bloom-back1.png" id="7_jhtqw"]
+[ext_resource type="Texture2D" uid="uid://hl41w86wisth" path="res://Player/bloom-back2.png" id="8_63qdj"]
+[ext_resource type="Texture2D" uid="uid://k1pkcbbtd0wm" path="res://Player/bloom-idle1.png" id="9_2fpl6"]
+[ext_resource type="Texture2D" uid="uid://ckcvwhhigumvw" path="res://Player/bloom-back3.png" id="9_mw0td"]
+[ext_resource type="Texture2D" uid="uid://dryitcse61c16" path="res://Player/bloom-back4.png" id="10_6atby"]
+[ext_resource type="Texture2D" uid="uid://d1q7nogx33p7m" path="res://Player/bloom-idle2.png" id="10_yqheq"]
+[ext_resource type="Texture2D" uid="uid://c58y0mq08j3d5" path="res://Player/bloom-death.png" id="11_d865k"]
+[ext_resource type="Texture2D" uid="uid://cy23m2md6kc0k" path="res://Player/bloom-idle3.png" id="11_rmysu"]
+[ext_resource type="Texture2D" uid="uid://bm0amhneid2i" path="res://Player/bloom-idle4.png" id="12_4kj73"]
+[ext_resource type="Texture2D" uid="uid://dotht2p46wf2f" path="res://Player/bloom-front1.png" id="12_j2jrc"]
+[ext_resource type="Script" path="res://GameOver.gd" id="13_2w7s7"]
+[ext_resource type="Texture2D" uid="uid://dt6ps1bg5nqc8" path="res://Player/bloom-front2.png" id="13_5stbo"]
+[ext_resource type="Texture2D" uid="uid://b8cj4nmhj4fmm" path="res://Player/bloom-walk1.png" id="13_8takh"]
+[ext_resource type="Texture2D" uid="uid://cie1x467x0h6l" path="res://Player/bloom-front3.png" id="14_4qaqw"]
+[ext_resource type="Texture2D" uid="uid://wo3b6x5mc04t" path="res://Player/bloom-walk2.png" id="14_bgq5l"]
+[ext_resource type="Texture2D" uid="uid://cqitgstckf7uv" path="res://Player/bloom-walk3.png" id="15_8d6xm"]
+[ext_resource type="Texture2D" uid="uid://bb68fm7cvmu2v" path="res://Player/bloom-front4.png" id="15_h4x7f"]
+[ext_resource type="Texture2D" uid="uid://isd2bae5q7qq" path="res://Player/bloom-walk4.png" id="16_ei1mq"]
+[ext_resource type="AudioStream" uid="uid://cg5n61gk4d83d" path="res://fase 1.mp3" id="26_1wt3j"]
+
+[sub_resource type="Animation" id="Animation_whoi3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CoinsLabel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lgt61"]
+resource_name = "ScoreIncreased"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CoinsLabel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ixifg"]
+_data = {
+"RESET": SubResource("Animation_whoi3"),
+"ScoreIncreased": SubResource("Animation_lgt61")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3hjia"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_jhtqw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_63qdj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_mw0td")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_6atby")
+}],
+"loop": true,
+"name": &"Back",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_d865k")
+}],
+"loop": true,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_j2jrc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_5stbo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_4qaqw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_h4x7f")
+}],
+"loop": true,
+"name": &"Front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_2fpl6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_yqheq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_rmysu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_4kj73")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_8takh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_bgq5l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_8d6xm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ei1mq")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_62tl5"]
+size = Vector2(5.88581, 13.4066)
+
+[node name="Main" type="Node"]
+script = ExtResource("1_kybbk")
+coin = ExtResource("2_8qwvk")
+confetti = ExtResource("3_n1orf")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 30.0
+autostart = true
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1.54018e-06, 0.671043, 0.582826, 1)
+
+[node name="CoinsLabel" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -132.0
+offset_top = 20.0
+offset_right = 133.0
+offset_bottom = 88.0
+grow_horizontal = 2
+pivot_offset = Vector2(132, 34)
+theme_override_fonts/font = ExtResource("4_4d4pm")
+theme_override_font_sizes/font_size = 60
+text = "swords: 0"
+
+[node name="vampiro" parent="UI" instance=ExtResource("4_g5f3d")]
+position = Vector2(103, 315)
+
+[node name="LevelLabel" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -143.0
+offset_top = 93.0
+offset_right = 144.0
+offset_bottom = 161.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("4_4d4pm")
+theme_override_font_sizes/font_size = 60
+text = "Level: 1"
+
+[node name="UpButton" type="Button" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -37.0
+offset_top = -175.0
+offset_right = 38.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DownButton" type="Button" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -37.0
+offset_top = -86.0
+offset_right = 38.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="RightButton" type="Button" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 53.0
+offset_top = -86.0
+offset_right = 128.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="LeftButton" type="Button" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -127.0
+offset_top = -86.0
+offset_right = -52.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HealthBar" type="TextureProgressBar" parent="UI"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = -59.0
+offset_right = 110.0
+offset_bottom = 69.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 10000.0
+value = 10000.0
+fill_mode = 5
+nine_patch_stretch = true
+texture_progress = ExtResource("5_2xq2c")
+
+[node name="CoinsLabelAnimationPlayer" type="AnimationPlayer" parent="UI"]
+libraries = {
+"": SubResource("AnimationLibrary_ixifg")
+}
+speed_scale = 3.5
+
+[node name="Player" type="Area2D" parent="." groups=["Player"]]
+position = Vector2(270, 480)
+scale = Vector2(3.05821, 3.05821)
+script = ExtResource("6_tv2gb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_3hjia")
+animation = &"Death"
+autoplay = "Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+scale = Vector2(1.44834, 0.961065)
+shape = SubResource("RectangleShape2D_62tl5")
+
+[node name="GameOver" type="Control" parent="."]
+visible = false
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("13_2w7s7")
+
+[node name="Background" type="ColorRect" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.882353)
+
+[node name="GameOverTitle" type="Label" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -189.0
+offset_top = 33.0
+offset_right = 190.0
+offset_bottom = 101.0
+grow_horizontal = 2
+pivot_offset = Vector2(132, 34)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_4d4pm")
+theme_override_font_sizes/font_size = 60
+text = "YOU DIED!"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.5
+offset_top = -80.0
+offset_right = 190.5
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="PlayAgainButton" type="Button" parent="GameOver/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_4d4pm")
+theme_override_font_sizes/font_size = 50
+text = "revive"
+
+[node name="HomeButton" type="Button" parent="GameOver/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_4d4pm")
+theme_override_font_sizes/font_size = 50
+text = "return in menu"
+
+[node name="musica fase 1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("26_1wt3j")
+autoplay = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="button_down" from="UI/UpButton" to="Player" method="_on_up_button_button_down"]
+[connection signal="button_up" from="UI/UpButton" to="Player" method="_on_up_button_button_up"]
+[connection signal="button_down" from="UI/DownButton" to="Player" method="_on_down_button_button_down"]
+[connection signal="button_up" from="UI/DownButton" to="Player" method="_on_down_button_button_up"]
+[connection signal="button_down" from="UI/RightButton" to="Player" method="_on_right_button_button_down"]
+[connection signal="button_up" from="UI/RightButton" to="Player" method="_on_right_button_button_up"]
+[connection signal="button_down" from="UI/LeftButton" to="Player" method="_on_left_button_button_down"]
+[connection signal="button_up" from="UI/LeftButton" to="Player" method="_on_left_button_button_up"]
+[connection signal="area_entered" from="Player" to="Player" method="_on_area_entered"]
+[connection signal="pressed" from="GameOver/VBoxContainer/PlayAgainButton" to="GameOver" method="_on_play_again_button_pressed"]
+[connection signal="pressed" from="GameOver/VBoxContainer/HomeButton" to="GameOver" method="_on_home_button_pressed"]
